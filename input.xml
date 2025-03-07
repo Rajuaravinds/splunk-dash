@@ -1,0 +1,43 @@
+
+  <row>
+    <panel>
+      <input id="link_2" type="link" token="ed">
+        <label></label>
+        <choice value="e">Show Error Details</choice>
+        <choice value="h">Hide Error Details</choice>
+        <change>
+          <condition value="e">
+            <set token="showe">true</set>
+            <unset token="showh"></unset>
+          </condition>
+          <condition value="h">
+            <set token="showh">true</set>
+            <unset token="showe"></unset>
+          </condition>
+        </change>
+      </input>
+      <html>
+         <html>
+         <style>
+           .input-link {
+             min-width: 1200px !important;
+             width: 1200px !important;
+             max-width: 1200px !important;
+          #background-color: green !important;
+              color: white !important;
+           }
+         </style>
+         <style>
+         div[id^="link_2"] button{
+              background: rgba(96, 171, 49);
+              padding: 6px;
+              border-radius:4px;
+              color: white !important;
+            margin-right: 20px;
+            } 
+         </style>
+       </html>
+       </html>
+    </panel>
+  </row>
+  
