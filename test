@@ -1,0 +1,43 @@
+MITRE ATTCK Heatmap for Splunk
+
+
+your_search_here
+| makemv delim="," mitre_attack  
+| mvexpand mitre_attack  
+| eval tactic=case(
+    match(mitre_attack, "^T1595(\.|$)|^T1592(\.|$)|^T1590(\.|$)|^T1591(\.|$)|^T1593(\.|$)|^T1598(\.|$)|^T1599(\.|$)"), "Reconnaissance",
+    match(mitre_attack, "^T1583(\.|$)|^T1584(\.|$)|^T1585(\.|$)|^T1586(\.|$)|^T1587(\.|$)|^T1588(\.|$)|^T1589(\.|$)"), "Resource Development",
+    match(mitre_attack, "^T1566(\.|$)|^T1078(\.|$)|^T1189(\.|$)|^T1190(\.|$)|^T1133(\.|$)|^T1200(\.|$)"), "Initial Access",
+    match(mitre_attack, "^T1059(\.|$)|^T1203(\.|$)|^T1204(\.|$)|^T1569(\.|$)|^T1570(\.|$)"), "Execution",
+    match(mitre_attack, "^T1547(\.|$)|^T1136(\.|$)|^T1098(\.|$)|^T1505(\.|$)|^T1554(\.|$)"), "Persistence",
+    match(mitre_attack, "^T1548(\.|$)|^T1134(\.|$)|^T1574(\.|$)|^T1078(\.|$)|^T1611(\.|$)"), "Privilege Escalation",
+    match(mitre_attack, "^T1070(\.|$)|^T1562(\.|$)|^T1202(\.|$)|^T1036(\.|$)|^T1027(\.|$)"), "Defense Evasion",
+    match(mitre_attack, "^T1003(\.|$)|^T1552(\.|$)|^T1557(\.|$)|^T1110(\.|$)|^T1555(\.|$)|^T1056(\.|$)"), "Credential Access",
+    match(mitre_attack, "^T1087(\.|$)|^T1010(\.|$)|^T1033(\.|$)|^T1040(\.|$)|^T1012(\.|$)|^T1069(\.|$)"), "Discovery",
+    match(mitre_attack, "^T1021(\.|$)|^T1072(\.|$)|^T1534(\.|$)|^T1550(\.|$)|^T1570(\.|$)|^T1210(\.|$)"), "Lateral Movement",
+    match(mitre_attack, "^T1005(\.|$)|^T1074(\.|$)|^T1113(\.|$)|^T1560(\.|$)"), "Collection",
+    match(mitre_attack, "^T1071(\.|$)|^T1090(\.|$)|^T1571(\.|$)|^T1572(\.|$)|^T1573(\.|$)|^T1573(\.|$)|^T1573(\.|$)"), "Command and Control",
+    match(mitre_attack, "^T1041(\.|$)|^T1567(\.|$)|^T1020(\.|$)|^T1030(\.|$)|^T1048(\.|$)"), "Exfiltration",
+    match(mitre_attack, "^T1499(\.|$)|^T1485(\.|$)|^T1486(\.|$)|^T1489(\.|$)|^T1490(\.|$)|^T1498(\.|$)|^T1496(\.|$)"), "Impact",
+    1=1, "Unknown"
+)
+| stats count by tactic  
+| eval sort_order=case(
+    tactic=="Reconnaissance", 1,
+    tactic=="Resource Development", 2,
+    tactic=="Initial Access", 3,
+    tactic=="Execution", 4,
+    tactic=="Persistence", 5,
+    tactic=="Privilege Escalation", 6,
+    tactic=="Defense Evasion", 7,
+    tactic=="Credential Access", 8,
+    tactic=="Discovery", 9,
+    tactic=="Lateral Movement", 10,
+    tactic=="Collection", 11,
+    tactic=="Command and Control", 12,
+    tactic=="Exfiltration", 13,
+    tactic=="Impact", 14,
+    1=1, 15
+)
+| sort sort_order
+| fields - sort_order
