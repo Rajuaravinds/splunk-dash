@@ -1,6 +1,3 @@
-MITRE ATTCK Heatmap for Splunk
-
-
 your_search_here
 | makemv delim="," mitre_attack  
 | mvexpand mitre_attack  
@@ -41,3 +38,5 @@ your_search_here
 )
 | sort sort_order
 | fields - sort_order
+| transpose header_field=tactic column_name="Tactic" 
+| fillnull value=0
