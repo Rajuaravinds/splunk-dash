@@ -1,6 +1,3 @@
-your_search_here
-| makemv delim="," mitre_attack  
-| mvexpand mitre_attack  
 | eval tactic=case(
     match(mitre_attack, "^T1595(\.|$)|^T1592(\.|$)|^T1590(\.|$)|^T1591(\.|$)|^T1593(\.|$)|^T1598(\.|$)|^T1599(\.|$)"), "Reconnaissance",
     match(mitre_attack, "^T1583(\.|$)|^T1584(\.|$)|^T1585(\.|$)|^T1586(\.|$)|^T1587(\.|$)|^T1588(\.|$)|^T1589(\.|$)"), "Resource Development",
@@ -18,32 +15,7 @@ your_search_here
     match(mitre_attack, "^T1499(\.|$)|^T1485(\.|$)|^T1486(\.|$)|^T1489(\.|$)|^T1490(\.|$)|^T1498(\.|$)|^T1496(\.|$)"), "Impact",
     1=1, "Unknown"
 )
-| stats count by tactic  
-| appendpipe [ | makeresults 
-    | eval tactic="Reconnaissance,Resource Development,Initial Access,Execution,Persistence,Privilege Escalation,Defense Evasion,Credential Access,Discovery,Lateral Movement,Collection,Command and Control,Exfiltration,Impact"
-    | makemv delim="," tactic 
-    | mvexpand tactic 
-    | eval count=0 
-]
-| stats max(count) as count by tactic  
-| eval sort_order=case(
-    tactic=="Reconnaissance", 1,
-    tactic=="Resource Development", 2,
-    tactic=="Initial Access", 3,
-    tactic=="Execution", 4,
-    tactic=="Persistence", 5,
-    tactic=="Privilege Escalation", 6,
-    tactic=="Defense Evasion", 7,
-    tactic=="Credential Access", 8,
-    tactic=="Discovery", 9,
-    tactic=="Lateral Movement", 10,
-    tactic=="Collection", 11,
-    tactic=="Command and Control", 12,
-    tactic=="Exfiltration", 13,
-    tactic=="Impact", 14,
-    1=1, 15
-)
-| sort sort_order
+| stats count by tactic
 | eval Reconnaissance=if(tactic=="Reconnaissance", count, 0)
 | eval "Resource Development"=if(tactic=="Resource Development", count, 0)
 | eval "Initial Access"=if(tactic=="Initial Access", count, 0)
@@ -58,4 +30,5 @@ your_search_here
 | eval "Command and Control"=if(tactic=="Command and Control", count, 0)
 | eval Exfiltration=if(tactic=="Exfiltration", count, 0)
 | eval Impact=if(tactic=="Impact", count, 0)
+| stats sum(Reconnaissance) as Reconnaissance, sum("Resource Development") as "Resource Development", sum("Initial Access") as "Initial Access", sum(Execution) as Execution, sum(Persistence) as Persistence, sum("Privilege Escalation") as "Privilege Escalation", sum("Defense Evasion") as "Defense Evasion", sum("Credential Access") as "Credential Access", sum(Discovery) as Discovery, sum("Lateral Movement") as "Lateral Movement", sum(Collection) as Collection, sum("Command and Control") as "Command and Control", sum(Exfiltration) as Exfiltration, sum(Impact) as Impact
 | table Reconnaissance, "Resource Development", "Initial Access", Execution, Persistence, "Privilege Escalation", "Defense Evasion", "Credential Access", Discovery, "Lateral Movement", Collection, "Command and Control", Exfiltration, Impact
