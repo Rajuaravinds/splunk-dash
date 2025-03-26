@@ -10,7 +10,7 @@
     match(mitre_attack, "^T1087(\.|$)|^T1010(\.|$)|^T1033(\.|$)|^T1040(\.|$)|^T1012(\.|$)|^T1069(\.|$)"), "Discovery",
     match(mitre_attack, "^T1021(\.|$)|^T1072(\.|$)|^T1534(\.|$)|^T1550(\.|$)|^T1570(\.|$)|^T1210(\.|$)"), "Lateral Movement",
     match(mitre_attack, "^T1005(\.|$)|^T1074(\.|$)|^T1113(\.|$)|^T1560(\.|$)"), "Collection",
-    match(mitre_attack, "^T1071(\.|$)|^T1090(\.|$)|^T1571(\.|$)|^T1572(\.|$)|^T1573(\.|$)|^T1573(\.|$)|^T1573(\.|$)"), "Command and Control",
+    match(mitre_attack, "^T1071(\.|$)|^T1090(\.|$)|^T1571(\.|$)|^T1572(\.|$)|^T1573(\.|$)"), "Command and Control",
     match(mitre_attack, "^T1041(\.|$)|^T1567(\.|$)|^T1020(\.|$)|^T1030(\.|$)|^T1048(\.|$)"), "Exfiltration",
     match(mitre_attack, "^T1499(\.|$)|^T1485(\.|$)|^T1486(\.|$)|^T1489(\.|$)|^T1490(\.|$)|^T1498(\.|$)|^T1496(\.|$)"), "Impact",
     1=1, "Unknown"
