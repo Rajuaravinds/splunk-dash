@@ -2,8 +2,8 @@
     match(mitre_attack, "^T1595(\.|$)|^T1592(\.|$)|^T1590(\.|$)|^T1591(\.|$)|^T1593(\.|$)|^T1598(\.|$)|^T1599(\.|$)"), "Reconnaissance",
     match(mitre_attack, "^T1583(\.|$)|^T1584(\.|$)|^T1585(\.|$)|^T1586(\.|$)|^T1587(\.|$)|^T1588(\.|$)|^T1589(\.|$)"), "Resource Development",
     match(mitre_attack, "^T1566(\.|$)|^T1078(\.|$)|^T1189(\.|$)|^T1190(\.|$)|^T1133(\.|$)|^T1200(\.|$)|^T1046(\.|$)|^T1047(\.|$)|^T1049(\.|$)"), "Initial Access",
-    match(mitre_attack, "^T1059(\.|$)|^T1203(\.|$)|^T1204(\.|$)|^T1569(\.|$)|^T1570(\.|$)|^T1207(\.|$)|^T1218(\.|$)"), "Execution",
-    match(mitre_attack, "^T1547(\.|$)|^T1136(\.|$)|^T1098(\.|$)|^T1505(\.|$)|^T1554(\.|$)|^T1112(\.|$)|^T1543(\.|$)|^T1543.003(\.|$)"), "Persistence",
+    match(mitre_attack, "^T1059(\.|$)|^T1203(\.|$)|^T1204(\.|$)|^T1569(\.|$)|^T1570(\.|$)|^T1207(\.|$)|^T1218(\.|$)|^T1105(\.|$)"), "Execution",
+    match(mitre_attack, "^T1547(\.|$)|^T1136(\.|$)|^T1098(\.|$)|^T1505(\.|$)|^T1554(\.|$)|^T1112(\.|$)|^T1543(\.|$)|^T1543.003(\.|$)|^T1053(\.|$)|^T1053.002(\.|$)|^T1053.003(\.|$)"), "Persistence",
     match(mitre_attack, "^T1548(\.|$)|^T1134(\.|$)|^T1574(\.|$)|^T1078(\.|$)|^T1611(\.|$)"), "Privilege Escalation",
     match(mitre_attack, "^T1070(\.|$)|^T1562(\.|$)|^T1202(\.|$)|^T1036(\.|$)|^T1027(\.|$)"), "Defense Evasion",
     match(mitre_attack, "^T1003(\.|$)|^T1552(\.|$)|^T1557(\.|$)|^T1110(\.|$)|^T1555(\.|$)|^T1056(\.|$)|^T1558(\.|$)"), "Credential Access",
@@ -16,7 +16,7 @@
     1=1, "Unknown"
 )
 
-)
+
 | stats count by tactic
 | eval Reconnaissance=if(tactic=="Reconnaissance", count, 0)
 | eval "Resource Development"=if(tactic=="Resource Development", count, 0)
