@@ -1,14 +1,1 @@
- spath input=symcSEDRData
-| spath input=symcSEDRData path=device_domain
-| spath input=symcSEDRData path=edr_enriched_data.category_name
-| spath input=symcSEDRData path=edr_enriched_data.rule_name
-| spath input=symcSEDRData path=edr_enriched_data.suspicion_score
-| spath input=symcSEDRData path=logging_device_name
-| spath input=symcSEDRData path=attacks{}.technique_uid
-| spath input=symcSEDRData path=attacks{}.technique_name
-| spath input=symcSEDRData path=logging_device_ip
-| spath input=symcSEDRData path=device_time
-| spath input=symcSEDRData path=path
-| spath input=symcSEDRData path=cmd_line
-| spath input=symcSEDRData path=pid
-| table device_domain category_name rule_name suspicion_score logging_device_name technique_uid technique_name logging_device_ip device_time path cmd_line pid
+	{"process":{"uid":"5C98805E-0FA7-F1F0-8D12-60ABC5EF1DD4","file":{"signature_level_id":60,"path":"c:\\windows\\system32\\lsass.exe","signature_value_ids":[3,5],"sha2":"9afe7e4fada0ef603f98dfb383c4277c7fd1e4631c6fb94ab166a02133b59fcd","normalized_path":"CSIDL_SYSTEM\\lsass.exe","original_name":"lsass.exe","name":"lsass.exe","modified":1743514769156,"md5":"8d22d4bf8ba6cec369cdf410306b534f","signature_company_name":"Microsoft Windows Publisher"},"cmd_line":"C:\\Windows\\system32\\lsass.exe","pid":764,"integrity_id":6,"user":{"name":"SYSTEM","sid":"S-1-5-18"}},"type_id":8001,"device_domain":"EMSPZ4.local","edr_enriched_data":{"category_name":"Generic Data to be sent to Symantec EDR","category_id":201,"rule_name":"eCredentialDumping","suspicion_score":50,"rule_description":"Credential dumping attempt detected"},"ref_uid":"B1149873-A75E-48EB-A701-D78F8B813991","status_detail":"Generic Data to be sent to Symantec EDR","actor":{"uid":"5C988057-0FA7-F1F0-8D12-60ABC5EF1DD4","start_time":1743587206164,"file":{"signature_level_id":60,"path":"c:\\windows\\system32\\wininit.exe","signature_value_ids":[3,5],"sha2":"9d045793929738aba4a99d3d48dcb9de8ede24ca31b7319b618942fc5eb27e06","normalized_path":"CSIDL_SYSTEM\\wininit.exe","original_name":"WinInit.exe","name":"wininit.exe","modified":1726500460310,"md5":"bb8e62044aa67c0c178293751cdacfb6","signature_company_name":"Microsoft Windows Publisher"},"cmd_line":"wininit.exe","pid":596,"integrity_id":6,"user":{"name":"SYSTEM","sid":"S-1-5-18"}},"logging_device_name":"do-pin-edp001.emspz3it.local","user_domain":"NT AUTHORITY","attacks":[{"technique_uid":"T1003","tactic_ids":[6],"technique_name":"OS Credential Dumping","tactic_uids":["TA0006"]},{"technique_uid":"T1555","tactic_ids":[6],"technique_name":"Credentials from Password Stores","tactic_uids":["TA0006"]},{"technique_uid":"T1055","tactic_ids":[5,4],"technique_name":"Process Injection","tactic_uids":["TA0005","TA0004"]}],"logging_device_ip":"10.120.39.4","device_time":1743587206401}
